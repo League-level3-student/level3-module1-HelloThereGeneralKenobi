@@ -32,7 +32,8 @@ public class _03_MurderOfCrows {
          */
         
         /* 2. How many innocent crows had to die before the diamond was found? */
-    	
+    	for(int i = 0; i < theMurder.size(); i++) {
+    	}
     }
 
     private void initializeCrows() {

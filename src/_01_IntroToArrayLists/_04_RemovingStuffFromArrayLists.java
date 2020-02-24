@@ -9,9 +9,13 @@ import java.util.ArrayList;
 
 public class _04_RemovingStuffFromArrayLists {
 
+			
+	static boolean isDirt;
+	
 	public static void main(String[] args) {
 
 		class Stuff {
+			public boolean isDirt;
 			public String type;
 		}
 		class Worm extends Stuff {
@@ -22,8 +26,10 @@ public class _04_RemovingStuffFromArrayLists {
 		class Dirt extends Stuff {
 			public Dirt() {
 				type = "dirt";
+				isDirt = true;
 			}
 		}
+		
 		ArrayList<Stuff> stuffIFoundInTheYard = new ArrayList<Stuff>();
 		stuffIFoundInTheYard.add(new Worm());
 		stuffIFoundInTheYard.add(new Dirt());
@@ -35,8 +41,10 @@ public class _04_RemovingStuffFromArrayLists {
 		System.out.println(stuffIFoundInTheYard.size());
 
 		/* TODO 1: Clean out the dirt but keep the delicious worms. */
-		for(int n = 0; n < stuffIFoundInTheYard.size(); n++) {
-			if(stuffIFoundInTheYard.get(n).equals("dirt")) {
+		
+		
+		for(int n = 5; n > 0; n--) {
+			if(stuffIFoundInTheYard.get(n).isDirt == true) {
 				stuffIFoundInTheYard.remove(n);
 			}
 		}
@@ -78,8 +86,8 @@ public class _04_RemovingStuffFromArrayLists {
 		truth.add('r');
 		truth.add('#');
 		/* TODO 2: Remove the hash symbols and print out the truth. */
-		for(int i = 0; i < truth.size(); i++) {
-			if(truth.get(i).equals("#")) {
+		for(int i = truth.size() - 1; i > 0; i--) {
+			if(truth.get(i) == '#') {
 				truth.remove(i);
 			}
 		}

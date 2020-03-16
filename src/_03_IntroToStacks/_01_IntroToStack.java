@@ -17,14 +17,23 @@ public class _01_IntroToStack {
 		//2. Use a loop to push 100 random doubles between 0 and 100 to the Stack.
 		
 		for(int i = 0; i < 100; i++) {
-			stack.add(randgen.nextDouble());
+			stack.add(100 * randgen.nextDouble());
 		}
 		
 		//3. Ask the user to enter in two numbers between 0 and 100, inclusive. 
-		
+		String topBoundString = JOptionPane.showInputDialog("Input a top bound between 0 and 100 (inclusive)");
+		String bottomBoundString = JOptionPane.showInputDialog("Input a bottom bound between 0 and 100 (inclusive)");
+		int topBound = Integer.parseInt(topBoundString);
+		int bottomBound = Integer.parseInt(bottomBoundString); 
 		//4. Pop all the elements off of the Stack. Every time a double is popped that is
 		//   between the two numbers entered by the user, print it to the screen.
 		
+		for(int k = 0; k < stack.size(); k++) {
+			double num = stack.pop();
+			if(num > bottomBound && num < topBound) {
+				System.out.println(num);
+			}
+		}
 		
 		//   EXAMPLE:
 		//   NUM 1: 65

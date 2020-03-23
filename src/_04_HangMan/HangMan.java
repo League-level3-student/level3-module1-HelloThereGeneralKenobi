@@ -1,40 +1,102 @@
 package _04_HangMan;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.Stack;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class HangMan{
+public class HangMan implements KeyListener{
 	
 	JFrame frame;
 	JPanel panel;
 	JLabel label;
-	JLabel lives;
+	JLabel livesLabel;
+	Stack<String> stack;
+	String word;
+	int wrong = 0;
+	int lives = 10;
+	String labelText;
 	
 	public static void main(String[] args) {
+		
 		HangMan hangMan = new HangMan();
 		hangMan.setup();
-		
-		String answerString = JOptionPane.showInputDialog("Type a random number!");
-		int answer = Integer.parseInt(answerString);
-		for(int i = 0; i < answer; i++) {
-			
-		}
+		hangMan.readLines();
+		hangMan.run();
 		
 		}
+		
 	
 	
 	void setup() {
+		stack = new Stack<String>();
 		frame = new JFrame();
 		panel = new JPanel();
 		label = new JLabel();
-		lives = new JLabel();
+		livesLabel = new JLabel();
 		frame.setVisible(true);
 		frame.add(panel);
 		panel.add(label);
-		panel.add(lives);
+		panel.add(livesLabel);
+		frame.addKeyListener(this);
 		frame.setSize(500, 500);
+		livesLabel.setText("" + lives);
+	}
+	
+	void readLines() {
+		String answerString = JOptionPane.showInputDialog("Type a random number!");
+		int answer = Integer.parseInt(answerString);
+		for(int i = 0; i < answer; i++) {
+		stack.add(Utilities.readRandomLineFromFile("dictionary.txt"));
+		}
+	}
+	
+	void run() {
+		word = stack.pop();
+		labelText = "";
+		for(int i = 0; i < word.length(); i++) {
+			labelText = labelText + "_ ";
+		}
+		label.setText(labelText);
+	}
+
+
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		boolean isCorrect = false;
+		for(int i = 0; i < word.length(); i++) {
+			if(e.getKeyChar() == word.charAt(i)) {
+				labelText = labelText.substring(0, 2 * i) + word.charAt(i) + labelText.substring(2 * i + 1, labelText.length());
+				label.setText(labelText);
+				isCorrect = true;
+			}
+		}
+		if(isCorrect == false) {
+			lives--;
+			livesLabel.setText(lives + "");
+		}
+	}
+
+
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

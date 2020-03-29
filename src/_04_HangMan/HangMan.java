@@ -18,7 +18,7 @@ public class HangMan implements KeyListener{
 	Stack<String> stack;
 	String word;
 	int wrong = 0;
-	int lives = 10;
+	int lives = 15;
 	String labelText;
 	
 	public static void main(String[] args) {
@@ -26,7 +26,7 @@ public class HangMan implements KeyListener{
 		HangMan hangMan = new HangMan();
 		hangMan.setup();
 		hangMan.readLines();
-		hangMan.run();
+		hangMan.newWord();
 		
 		}
 		
@@ -55,7 +55,7 @@ public class HangMan implements KeyListener{
 		}
 	}
 	
-	void run() {
+	void newWord() {
 		word = stack.pop();
 		labelText = "";
 		for(int i = 0; i < word.length(); i++) {
@@ -80,6 +80,36 @@ public class HangMan implements KeyListener{
 		if(isCorrect == false) {
 			lives--;
 			livesLabel.setText(lives + "");
+		}
+		if(lives == 0) {
+			String answer = JOptionPane.showInputDialog("GAME OVER. Type 'play again' to do so");
+			if(answer.equalsIgnoreCase("play again")) {
+				lives = 15;
+				livesLabel.setText(lives + "");
+				newWord();
+			}
+		}
+		/*
+		if(correctnum >= word.length() + 1) {
+			JOptionPane.showMessageDialog(null, "Correct!");
+			correctnum = 0;
+			lives = 10;
+			livesLabel.setText(lives + "");
+			newWord();
+			
+		}
+		*/
+		int wrongnum = 0;
+		for(int j = 0; j < word.length(); j++) {
+			if(labelText.charAt(j) == '_') {
+				wrongnum++;
+			}
+		}
+		if(wrongnum == 0) {
+			JOptionPane.showMessageDialog(null, "Correct!");
+			lives = 15;
+			livesLabel.setText(lives + "");
+			newWord();
 		}
 	}
 

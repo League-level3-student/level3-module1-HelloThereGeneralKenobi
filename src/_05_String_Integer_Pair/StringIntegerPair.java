@@ -1,12 +1,17 @@
 package _05_String_Integer_Pair;
 
+import java.util.ArrayList;
+
 public class StringIntegerPair {
 	//1. create a private array of Strings called keys. Don't initialize it.
-
+	private String[] keys;
 	//2. create a private array of integers called values.
+	private int[] values;
 	
 	StringIntegerPair(){
 		//3. initialize both member arrays to a length of 0
+		keys = new String[0];
+		values = new int[0];
 	}
 	
 	// 4. Complete the steps in the put method
@@ -15,30 +20,67 @@ public class StringIntegerPair {
 		//   the passed in String, set the value at that location to the
 		//   passed in value and return from the method.
 		
+		for(int i = 0; i < keys.length; i++) {
+			if(keys[i] == key) {
+				values[i] = value;
+			}
+		}
+		
 		//B. create a String array that is one element longer than the keys
-		
+		String[] stringLonger = new String[keys.length + 1];
+
 		//C. create an integer array that is one element longer than values
-		
+		int[] intLonger = new int[values.length + 1];
 		//D. set the last element of the new String array to the passed in key
-		
+		stringLonger[stringLonger.length - 1] = key;
 		//E. set the last element of the new int array to the passed in value
-		
+		intLonger[intLonger.length - 1] = value;
 		//F. iterate through the keys and values and copy the elements to the new arrays
-		
+		for(int j = 0; j < keys.length; j++) {
+			stringLonger[j] = keys[j];
+		}
+		for(int k = 0; k < values.length; k++) {
+			intLonger[k] = values[k];
+		}
 		//G. Set the keys and values arrays equal to the new arrays created in steps B and C.
+		keys = stringLonger;
+		values = intLonger;
 	}
 	
 	//5. Complete the method so it returns the value located at the passed in key.
 	//   If the key does not exist, return Integer.MIN_VALUE.
 	public int get(String key) {
-		return 0;
+		int location = 0;
+		boolean exists = false;
+		for(int i = 0; i < keys.length; i++) {
+			if(keys[i] == key) {
+				exists = true;
+				location = i;
+			}
+		}
+		if(exists = false) {
+			return Integer.MIN_VALUE;
+		}
+		else {
+			return values[location];
+		}
 	}
 	
 	//6. Complete the containsKey method so that it returns true if the
 	//   passed in keys is contained in the keys array
 	public boolean containsKey(String key) {
-		
+		boolean exists = false;
+		for(int i = 0; i < keys.length; i++) {
+			if(keys[i] == key) {
+				exists = true;
+			}
+		}
+		if(exists = true) {
+			return true;
+		}
+		else {
 		return false;
+		}
 	}
 	
 	//7. Complete the containsValue method so that it returns true if the

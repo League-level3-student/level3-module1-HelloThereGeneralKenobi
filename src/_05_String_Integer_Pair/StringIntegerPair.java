@@ -75,7 +75,7 @@ public class StringIntegerPair {
 				exists = true;
 			}
 		}
-		if(exists = true) {
+		if(exists) {
 			return true;
 		}
 		else {
@@ -86,17 +86,27 @@ public class StringIntegerPair {
 	//7. Complete the containsValue method so that it returns true if the
 	//   passed in value is contained in the values array
 	public boolean containsValue(int value) {
-		
-		return false;
+		boolean exists = false;
+		for(int i = 0; i < values.length; i++) {
+			if(values[i] == value) {
+				exists = true;
+			}
+		}
+		if(exists) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	//8. Complete the getKeysMethod so it returns the keys as an array
 	public String[] getKeys() {
-		return null;
+		return keys;
 	}
 	
 	//9. Complete the getValues so it returns the values as an array
 	public int[] getValues() {
-		return null;
+		return values;
 	}
 }

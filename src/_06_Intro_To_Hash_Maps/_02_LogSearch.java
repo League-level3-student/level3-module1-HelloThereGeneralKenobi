@@ -1,7 +1,14 @@
 package _06_Intro_To_Hash_Maps;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
 
-public class _02_LogSearch {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class _02_LogSearch implements ActionListener {
   /* 
 	 * Crate a HashMap of Integers for the keys and Strings for the values.
 	 * Create a GUI with three buttons. 
@@ -30,4 +37,44 @@ public class _02_LogSearch {
 	 *
 	 * */
 	
+
+	HashMap<Integer, String> hash = new HashMap<Integer, String>();
+	
+	JFrame frame;
+	JPanel panel;
+	JButton add;
+	JButton search;
+	JButton view;
+	JButton remove;
+
+		public static void main(String[] args) {
+			_02_LogSearch logSearch = new _02_LogSearch();
+			logSearch.setup();
+		}
+	
+		void setup() {
+			frame = new JFrame();
+			panel = new JPanel();
+			add = new JButton();
+			search = new JButton();
+			view = new JButton();
+			remove = new JButton();
+			
+			frame.setVisible(true);
+			frame.add(panel);
+			panel.add(add);
+			panel.add(search);
+			panel.add(view);
+			panel.add(remove);
+			add.addActionListener(this);
+			search.addActionListener(this);
+			view.addActionListener(this);
+			remove.addActionListener(this);
+			
+}
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+		}
 }
